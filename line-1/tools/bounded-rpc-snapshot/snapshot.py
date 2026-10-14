@@ -200,6 +200,17 @@ def write_snapshot(path, rendered):
             temporary.unlink(missing_ok=True)
 
 
+def workspace_path(path, reading=False):
+    """Keep CLI file access within the directory from which it is run."""
+    root = Path.cwd().resolve()
+    resolved = path.resolve()
+    require(resolved != root and resolved.is_relative_to(root),
+            "CLI file path must stay inside the current workspace")
+    if reading:
+        require(resolved.is_file(), "snapshot file does not exist")
+    return resolved
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--method", default="eth_chainId", choices=sorted(READ_METHODS))
@@ -213,7 +224,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.verify is not None:
-            snapshot = verify_snapshot(args.verify)
+            snapshot = verify_snapshot(workspace_path(args.verify, reading=True))
             print(f"valid snapshot: {snapshot['request']['method']} "
                   f"{snapshot['response_sha256']}")
             return 0
@@ -230,11 +241,12 @@ def main(argv=None):
             method = "eth_call"
             params = [{"to": ZTO, "data": "0x18160ddd"}, "latest"]
         validate_request(method, params)
+        output = workspace_path(args.output) if args.output else None
         snapshot = make_snapshot(args.rpc_url, method, params, args.timeout)
         rendered = json.dumps(snapshot, indent=2, sort_keys=True,
                               ensure_ascii=False) + "\n"
-        if args.output:
-            write_snapshot(args.output, rendered)
+        if output:
+            write_snapshot(output, rendered)
         else:
             sys.stdout.write(rendered)
     except (SnapshotError, OSError, OverflowError, ValueError) as exc:

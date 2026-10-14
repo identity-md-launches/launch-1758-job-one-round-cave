@@ -15,3 +15,5 @@ python3 -B line-1/tools/bounded-rpc-snapshot/snapshot.py --preset zto-supply --o
 ```
 
 The preset uses a fixed public ZTO address and read-only `eth_call`. Other supported methods are listed by `--help`; custom `--params` must be a JSON array. Only successful responses are written. The checksum detects accidental response changes within a saved file; it is not proof of the RPC provider's honesty. `latest` is a sampled state and can change on a subsequent run. The capture needs a reachable HTTPS RPC endpoint; offline verification does not.
+
+CLI `--verify` and `--output` paths are limited to the current workspace directory (including its subdirectories); paths resolving outside it are rejected. This addresses the path-boundary concern in the gathering review. The check follows symlinks when resolving paths, but it is not a race-proof OS sandbox.

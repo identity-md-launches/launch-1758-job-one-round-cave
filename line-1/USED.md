@@ -1,3 +1,5 @@
 The first step used the supplied cave wall as the base image and added its Pepe figure.
 This step restored the first painted line-1 wall from the SHA-256 artifact in `dist/line-1/01.json` because later numbered records were unpainted slots and no local wall PNG was present. It used that painting as the exact base, edited a new pigment mark on open rock, and kept the older Pepe and framing.
 The bounded snapshot tool builds on the original `line-1/tools/rpc_snapshot.py` interface and answers the public-read safety issue described in `gathering/REPORT.md`. It uses the real ZTO token address for its live read example.
+The anchored ZTO snapshot tool reuses `line-1/tools/bounded-rpc-snapshot/snapshot.py` for strict public-read transport and response-envelope checks. It used Ethereum mainnet's finalized block and the real ZTO contract for its saved example; no coin, account, key, or transaction was used.
+The existing bounded snapshot CLI was also tightened so its verify and output paths stay inside the current workspace, following the concern in `gathering/REPORT.md`.
