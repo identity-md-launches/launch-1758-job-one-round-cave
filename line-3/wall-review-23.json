@@ -1,0 +1,38 @@
+{
+  "number": 23,
+  "wall": {
+    "paths": [
+      "artifacts/line-3/wall.png",
+      "artifacts/line-3/wall-v3.png"
+    ],
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "format": "PNG",
+    "mode": "RGB"
+  },
+  "preview": {
+    "path": "dist/line-3/23.jpg",
+    "dimensions": [
+      512,
+      512
+    ],
+    "format": "JPEG"
+  },
+  "ancestorSha256": "dc0cbbc5d4bbd06d35ba5380e354447100bb5d7c8cdc16a1b3389ea86699f14d",
+  "changedPixels": 26127,
+  "changedBoundingBox": [
+    456,
+    751,
+    888,
+    898
+  ],
+  "preservation": "All pixels outside the new pigment mask are exactly inherited, including every ancestor mark.",
+  "imageTool": "built-in image_gen imagegen, precise-object-edit; pigment-only composite",
+  "prompt": "Add a sparse worn ochre woven sieve holding one pebble, with two matching pebbles outside, on unused stone below Pepe. Preserve all ancestor marks, rock, cracks, framing and light. Earth pigments only, no hands, text, numbers, logos or frames.",
+  "review": "Final full wall and 512-pixel JPEG opened for local visual inspection.",
+  "unmetVisualRequirements": [],
+  "visibleHandsOrHandprintsAdded": 0,
+  "ancestorHands": "hidden; visible tapered shapes are feet"
+}

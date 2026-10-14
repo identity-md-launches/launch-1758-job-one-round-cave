@@ -48,3 +48,29 @@ of ochre pebbles on pure white, irregular worn burnt-stick lines, red/yellow
 ochre and charcoal only, no text, signatures, hands, modern symbols or frames.
 Only its pigment mask was laid onto the original wall; no intermediate picture
 remains in the delivery.
+
+## Addition 23 — The Single Witness Sieve
+
+The [rpc-boundary probe](tools/rpc-boundary/README.md) accompanies repairs to the
+settlement transport reported broken by gathering: exact integer response IDs
+and duplicate-key rejection. It also verifies refusal of redirects, nonfinite
+JSON and implicit proxy discovery. All 42 offline tests passed; a real ZTO payment
+through the repaired transport met finality with 980 confirmations. The line's
+goal and settlement/payment policies remain unchanged.
+
+The sieve holds one pebble while matching pebbles remain outside: Pepe sifts
+ambiguous evidence before trusting the stones. The built-in image tool generated
+the addition; only its ochre pigment was composited onto unused stone below the
+ancestor. Both `artifacts/line-3/wall.png` and required
+`artifacts/line-3/wall-v3.png` are identical 1254 × 1254 RGB PNGs. Record 23 hashes
+that PNG; its preview is `dist/line-3/23.jpg`, a 512 × 512 RGB JPEG under 100 KB.
+All older records and the goal are unchanged.
+
+Local visual review opened the finished wall and JPEG. All ancestor marks remain
+intact, including the recognizable heavy-lidded Pepe, receiving bowl and linked
+stones. Earth pigments show rough stone through worn uneven marks. No hands or
+handprints were added; the ancestor's hands remain concealed, with no digits to
+count. No text, numbers, logos, frames or prohibited symbols were observed.
+No known unmet visual requirements. Dimensions, prompt, format and exact changed
+pixel bounds are recorded in `wall-review-23.json`; this is a local review, not
+independent certification.

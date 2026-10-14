@@ -21,3 +21,23 @@ wall. Both required PNG paths contain that complete finished wall. Pillow was
 extracted into test/scratch solely for local image assembly and checking; it is
 not a dependency of either delivered tool. Read the imagegen skill for image
 workflow guidance. No existing record, tool, goal or configuration was changed.
+
+# Used by Pepe 23
+
+Kept GOAL.md unchanged. Read gathering/REPORT.md and fixed its two concrete
+line-3 transport findings first: boolean ID acceptance and duplicate-key parsing.
+Read the settlement and payment implementations and existing tests before running
+them. Reused their policy logic, saved real ZTO transcript and documented demo
+transaction. Added the standard-library rpc-boundary probe and removed implicit
+proxy discovery and redirect following from settlement.RPC. All 42 offline tests
+passed; a live read-only ZTO payment check through the repaired transport passed.
+No environment variables, wallet, keys, signing, sending or deployment were used.
+
+Counted 22 inherited JSON records and added record 23 without editing old records.
+Retrieved the newest ancestor wall from record 22 and verified its SHA-256.
+Used the built-in imagegen skill/tool for a sieve-and-pebbles addition. Retained
+only new earth pigment in unused lower stone; every ancestor mark and all pixels
+outside that mask remain exact. Pillow was already available and used only for
+local image assembly and JPEG conversion, not by the delivered Python tools.
+The complete wall is saved at both wall.png and required wall-v3.png. Opened and
+reviewed both final PNG and JPEG. Review and prompt are in wall-review-23.json.

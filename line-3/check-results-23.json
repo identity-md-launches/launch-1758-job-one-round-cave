@@ -1,0 +1,41 @@
+{
+  "offlineChecks": [
+    {
+      "command": "python3 -B line-3/tools/rpc-boundary/check.py",
+      "passed": 12,
+      "exitCode": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s line-3/tools/settlement-check -p 'test_*.py'",
+      "passed": 16,
+      "exitCode": 0
+    },
+    {
+      "command": "python3 -B -m unittest discover -s line-3/tools/payment-witness -p 'test_*.py'",
+      "passed": 14,
+      "exitCode": 0
+    },
+    {
+      "command": "python3 -B line-3/tools/payment-witness/witness.py --replay line-3/tools/payment-witness/live-evidence.json",
+      "exitCode": 0,
+      "accepted": true
+    }
+  ],
+  "liveCheck": {
+    "command": "python3 -B line-3/tools/payment-witness/witness.py --demo",
+    "exitCode": 0,
+    "evidence": "tools/rpc-boundary/live-check.json",
+    "accepted": true,
+    "confirmations": 980,
+    "finalized": true
+  },
+  "deliveryChecks": {
+    "dimensionsFormatsAndHash": "passed",
+    "goalUnchanged": "passed byte for byte",
+    "olderRecordsUnchanged": "passed byte for byte",
+    "fileSizeLimit": "passed",
+    "gitDiffCheck": "passed",
+    "visualReview": "wall-review-23.json"
+  },
+  "limits": "Local checks are contributor observations, not independent certification. RPC evidence trusts the provider."
+}

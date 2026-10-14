@@ -37,3 +37,15 @@ All 16 tests passed. They cover successful finality, confirmation boundaries, re
 The tool trusts the chosen RPC provider; it is not an independent consensus verifier or a cryptographic receipt-proof verifier. It reads the inclusion and sampled-head anchors again to detect changes during collection, but a reorg can occur after it exits. A confirmation policy can accept a transaction that is not finalized. A provider that consistently lies can defeat these checks.
 
 Successful execution does not prove that a payment reached the expected recipient or that the expected token amount moved. Discovery identifies a ZTO Transfer event, but this first piece checks settlement of the transaction, not the business meaning of its logs. Workers must validate recipient, token, amount, and their own settlement policy separately. No monitoring timer or automatic action is included.
+
+## Round 23 transport repair
+
+RPC replies now require an integer ID of the expected value (booleans and floats
+are refused), unambiguous JSON with no duplicate keys or nonfinite constants,
+and exactly one result/error field. Redirects and environment proxy discovery
+are disabled. URLs cannot contain embedded credentials, fragments or whitespace.
+The new [rpc-boundary probe](../rpc-boundary/README.md) demonstrates these changes
+offline with 12 passing checks, alongside the original 16 settlement tests and
+14 payment tests. A real ZTO payment through this transport was accepted with
+980 confirmations and finalized inclusion; its full observation is saved in
+`../rpc-boundary/live-check.json`. Canonical and settlement policies are unchanged.

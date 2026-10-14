@@ -6,6 +6,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.parse
 
 RPC_URL = "https://ethereum-rpc.publicnode.com"
 ZTO = "0xd782bdea4ef02a0bd391eb9089470c8080f0a68e"
@@ -28,34 +29,72 @@ def quantity(value):
     return int(value, 16)
 
 
+def strict_json(raw):
+    """Refuse ambiguous JSON at every nesting level, including nonfinite values."""
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise EvidenceError("duplicate JSON key: " + key)
+            result[key] = value
+        return result
+
+    def constant(value):
+        raise EvidenceError("nonfinite JSON value: " + value)
+
+    try:
+        return json.loads(raw, object_pairs_hook=pairs, parse_constant=constant)
+    except (ValueError, UnicodeError, RecursionError) as exc:
+        raise EvidenceError("invalid RPC JSON: " + str(exc)) from exc
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise EvidenceError("RPC redirects are refused")
+
+
 class RPC:
     def __init__(self, url):
-        if not url.startswith(("https://", "http://")):
-            raise EvidenceError("RPC URL must use HTTP or HTTPS")
+        if not isinstance(url, str):
+            raise EvidenceError("RPC URL must be a string")
+        try:
+            parsed = urllib.parse.urlsplit(url)
+            valid = (parsed.scheme in ("https", "http") and parsed.hostname and
+                     parsed.username is None and parsed.password is None and
+                     not parsed.fragment and parsed.port != 0 and
+                     not any(ord(c) <= 32 or ord(c) == 127 for c in url))
+        except ValueError as exc:
+            raise EvidenceError("invalid RPC URL") from exc
+        if not valid:
+            raise EvidenceError("RPC URL must be HTTP(S), with a host and no credentials or fragment")
         self.url = url
         self.sequence = 0
+        # Explicit empty proxy settings avoid reading the process environment.
+        # No redirect can change the public endpoint selected by the caller.
+        self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}), NoRedirect())
 
     def call(self, method, params):
-        # Only these read methods are available, even to callers importing this module.
         if method not in {"eth_chainId", "eth_getBlockByNumber", "eth_getTransactionReceipt", "eth_getLogs"}:
             raise EvidenceError("method is not an allowed read")
         self.sequence += 1
         request = urllib.request.Request(
             self.url,
-            data=json.dumps({"jsonrpc": "2.0", "id": self.sequence, "method": method, "params": params}).encode(),
-            headers={"Content-Type": "application/json", "User-Agent": "Pepeolithic-Line3-Settlement/1.0"},
+            data=json.dumps({"jsonrpc": "2.0", "id": self.sequence, "method": method, "params": params},
+                            allow_nan=False).encode(),
+            headers={"Content-Type": "application/json", "User-Agent": "Pepeolithic-Line3-Settlement/2.0"},
         )
-        with urllib.request.urlopen(request, timeout=20) as response:
+        with self.opener.open(request, timeout=20) as response:
             raw = response.read(4_000_001)
         if len(raw) > 4_000_000:
             raise EvidenceError("RPC response exceeds size limit")
-        result = json.loads(raw)
-        if not isinstance(result, dict) or result.get("id") != self.sequence or result.get("jsonrpc") != "2.0":
+        result = strict_json(raw)
+        if (not isinstance(result, dict) or type(result.get("id")) is not int or
+                result["id"] != self.sequence or result.get("jsonrpc") != "2.0"):
             raise EvidenceError("invalid RPC response envelope")
+        if ("result" in result) == ("error" in result):
+            raise EvidenceError("RPC response must contain exactly one of result or error")
         if "error" in result:
             raise EvidenceError("RPC error: " + json.dumps(result["error"]))
-        if "result" not in result:
-            raise EvidenceError("RPC response has no result")
         return result["result"]
 
 
