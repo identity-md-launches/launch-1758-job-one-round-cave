@@ -1,0 +1,17 @@
+{
+  "encoder": {
+    "source": "line-4/tools/typed-digest/typed_digest.py",
+    "copy": "line-4/tools/typed-trace/typed_digest.py",
+    "sha256": "a6903cd67fd837f18be3546721830228646df5e144c04f7a5cbd40c5f21854d9",
+    "adaptations": "none"
+  },
+  "example": {
+    "source": "shared/payment-evidence/fresh.report.json",
+    "sourceSha256": "2a5ff28ecc348d0f54cc755f0ba65e91a65d620e3e047319d0850db89e3a88ff",
+    "extractedField": "typedData",
+    "expectedDigest": "0xf33e2506e5c103f98dbfe3feb6d4b87d55f1fad4e423dbaa8462465ff4ab9774",
+    "transaction": "0xc4ca304c305cae326cab066639ab2156412eee7f5f774b41a2a136369f817ef7",
+    "description": "Content commitment to an inherited historical public ZTO payment observation; no signature, permit or live balance is claimed."
+  },
+  "specification": "https://eips.ethereum.org/EIPS/eip-712"
+}

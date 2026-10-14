@@ -1,0 +1,62 @@
+{
+  "wall": {
+    "paths": [
+      "artifacts/line-4/wall.png",
+      "artifacts/line-4/wall-v3.png"
+    ],
+    "width": 1254,
+    "height": 1254,
+    "format": "PNG",
+    "mode": "RGB",
+    "sha256": "423ea6e2d272905eda1ae625f3908c9884942fe38972494fc0f5931659dca4b5"
+  },
+  "ancestorSha256": "c20adab88598175c4e379565458067bd572362def5f348804ce338906f3cf2f8",
+  "generatedImageSha256": "919f6a60739341daaa89f5d5cac56440939966a1b4f8051304742f79712fbe52",
+  "changedPixels": 7482,
+  "unchangedPixels": 1565034,
+  "additionBounds": [
+    999,
+    503,
+    1153,
+    696
+  ],
+  "pixelsOutsideAdditionUnchanged": true,
+  "ancestorFigureHandsTabletAndMarksUnchanged": true,
+  "preview": {
+    "path": "dist/line-4/23.jpg",
+    "width": 512,
+    "height": 512,
+    "format": "JPEG",
+    "bytes": 77479,
+    "quality": 52
+  },
+  "imageTool": "built-in imagegen",
+  "prompt": "Preserve the ancestor cave size, rock, cracks, torchlight, water, framing, Pepe and every existing mark. Add only a small worn branching charcoal trail with three ochre pebble discs joined into a chalk circular seal on bare stone right of Pepe. Earth pigments, no text, hands, numbers, logos or frames.",
+  "visualReview": "Inspected the final full-resolution PNG and decoded 512-pixel JPEG. The recognizable ancestor Pepe has a wide mouth and heavy-lidded eyes. Both unchanged inherited hands show four fingers and one thumb each; no hand, stencil or handprint was added. A worn charcoal branch joins three ochre pebbles to a central seal on previously bare stone right of Pepe. All earlier figure, tablet, sieve, surrounding pigment, warm rock, cracks, lighting, water and framing are preserved. No letters, numbers, caption, logo, signature, watermark, border, frame, real person or prohibited symbol observed.",
+  "unmetVisualRequirements": [],
+  "limitations": [
+    "A local visual review is not independent certification.",
+    "The small addition is subtler in the JPEG thumbnail.",
+    "Chalk at the central seal is faint after retaining only generated pigment."
+  ],
+  "checks": {
+    "newOfflineTestsPassed": 21,
+    "ancestorOfflineTestsPassed": 28,
+    "publishedEtherMailVectorPassed": true,
+    "realZtoCommitmentMatches": true,
+    "detachedFolderWorksOffline": true,
+    "freshPublicZtoTransferMatched": true,
+    "inspectionCompleted": true,
+    "ancestorGoalToolsAndRecordsByteIdentical": true,
+    "recordNumberAndExactShape": true,
+    "wallPngCrcAndDecompression": true,
+    "wallHashMatchesRecord": true,
+    "wallDimensionsPreserved": true,
+    "jpegDimensionsAndByteLimit": true,
+    "ancestorPixelPreservationRechecked": true,
+    "copiedEncoderAndExampleProvenanceVerified": true,
+    "authorizedPathsOnly": true,
+    "fileSizeLimitsPassed": true,
+    "namedWallsUntracked": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-14",
+  "newTestsPassed": 21,
+  "ancestorTestsPassed": 28,
+  "noNetworkRequiredForTool": true,
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "line-4/tools/typed-trace",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "testsPassed": 21,
+      "result": "OK; published Ether Mail vector, exact field and preimage reconstruction, Unicode, fixed/dynamic bytes, nested and recursive arrays, declaration-order sensitivity, malformed request and path refusal, output bounds, CLI match and mismatch, and internal trace disagreement."
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "test/scratch/typed-digest-regression",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exitCode": 0,
+      "stdout": "",
+      "stderr": "test_bad_unicode_and_bad_json (test_bounded_input.BoundedInputTests.test_bad_unicode_and_bad_json) ... ok\ntest_brackets_and_escaped_quotes_in_strings_do_not_count (test_bounded_input.BoundedInputTests.test_brackets_and_escaped_quotes_in_strings_do_not_count) ... ok\ntest_byte_limit_at_boundary (test_bounded_input.BoundedInputTests.test_byte_limit_at_boundary) ... ok\ntest_cli_match_and_mismatch (test_bounded_input.BoundedInputTests.test_cli_match_and_mismatch) ... ok\ntest_cli_rejection_no_traceback_or_success_output (test_bounded_input.BoundedInputTests.test_cli_rejection_no_traceback_or_success_output) ... ok\ntest_cyclic_api_values_and_nonstring_keys_rejected (test_bounded_input.BoundedInputTests.test_cyclic_api_values_and_nonstring_keys_rejected) ... ok\ntest_depth_scanned_before_decoder (test_bounded_input.BoundedInputTests.test_depth_scanned_before_decoder) ... ok\ntest_duplicate_keys_at_any_depth (test_bounded_input.BoundedInputTests.test_duplicate_keys_at_any_depth) ... ok\ntest_example_unchanged_and_absolute_path_supported (test_bounded_input.BoundedInputTests.test_example_unchanged_and_absolute_path_supported) ... ok\ntest_fifo_refused_without_blocking (test_bounded_input.BoundedInputTests.test_fifo_refused_without_blocking) ... ok\ntest_file_and_directory_symlinks_rejected (test_bounded_input.BoundedInputTests.test_file_and_directory_symlinks_rejected) ... ok\ntest_hidden_paths_rejected (test_bounded_input.BoundedInputTests.test_hidden_paths_rejected) ... ok\ntest_node_and_api_text_bounds (test_bounded_input.BoundedInputTests.test_node_and_api_text_bounds) ... ok\ntest_nonfinite_float_and_exponent_rejected (test_bounded_input.BoundedInputTests.test_nonfinite_float_and_exponent_rejected) ... ok\ntest_outside_and_parent_paths_rejected_without_opening (test_bounded_input.BoundedInputTests.test_outside_and_parent_paths_rejected_without_opening) ... ok\ntest_oversize_file_rejected_before_read (test_bounded_input.BoundedInputTests.test_oversize_file_rejected_before_read) ... ok\ntest_bytes_address_boolean_encoding (test_bounded_input.EncodingBoundaryTests.test_bytes_address_boolean_encoding) ... ok\ntest_empty_dynamic_and_nested_fixed_arrays (test_bounded_input.EncodingBoundaryTests.test_empty_dynamic_and_nested_fixed_arrays) ... ok\ntest_encoder_owns_schema_snapshot_when_caching (test_bounded_input.EncodingBoundaryTests.test_encoder_owns_schema_snapshot_when_caching) ... ok\ntest_invalid_types_and_deep_array_types_rejected (test_bounded_input.EncodingBoundaryTests.test_invalid_types_and_deep_array_types_rejected) ... ok\ntest_recursive_type_with_finite_values (test_bounded_input.EncodingBoundaryTests.test_recursive_type_with_finite_values) ... ok\ntest_signed_and_unsigned_limits_and_sign_extension (test_bounded_input.EncodingBoundaryTests.test_signed_and_unsigned_limits_and_sign_extension) ... ok\ntest_type_field_order_changes_digest (test_bounded_input.EncodingBoundaryTests.test_type_field_order_changes_digest) ... ok\ntest_types_and_fields_bounded (test_bounded_input.EncodingBoundaryTests.test_types_and_fields_bounded) ... ok\ntest_dependency_order_and_arrays (test_typed_digest.DigestTests.test_dependency_order_and_arrays) ... ok\ntest_ether_mail_vector (test_typed_digest.DigestTests.test_ether_mail_vector) ... ok\ntest_keccak_vectors (test_typed_digest.DigestTests.test_keccak_vectors) ... ok\ntest_rejects_ambiguous_or_invalid_values (test_typed_digest.DigestTests.test_rejects_ambiguous_or_invalid_values) ... ok\n\n----------------------------------------------------------------------\nRan 28 tests in 0.472s\n\nOK\n"
+    },
+    {
+      "command": [
+        "python3",
+        "-B",
+        "test/scratch/typed-trace-detached/typed_trace.py",
+        "test/scratch/typed-trace-detached/zto-payment.json",
+        "--expect",
+        "0xf33e2506e5c103f98dbfe3feb6d4b87d55f1fad4e423dbaa8462465ff4ab9774",
+        "--summary"
+      ],
+      "exitCode": 0,
+      "stdout": "{\n  \"primaryType\": \"PaymentEvidence\",\n  \"domainSeparator\": \"0xb841b9b4b38823bdf4340d649cbad52a49cb75b55ddd1f91b457246dcb4f807d\",\n  \"messageHash\": \"0xac6db73f194d768dad814f953bcc998a7338581d687e8a9107ca85ed94077599\",\n  \"digest\": \"0xf33e2506e5c103f98dbfe3feb6d4b87d55f1fad4e423dbaa8462465ff4ab9774\",\n  \"traceNodes\": 12,\n  \"matchesExpected\": true\n}\n",
+      "stderr": ""
+    }
+  ],
+  "liveReceiptCheck": {
+    "file": "line-4/tools/typed-trace/example-source.json",
+    "result": "Successful real ZTO Transfer observation matches the inherited typed-data example: log 632, exact token, recipient and raw amount."
+  }
+}
