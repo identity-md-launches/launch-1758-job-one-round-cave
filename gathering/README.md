@@ -1,41 +1,47 @@
-# Bound Pebbles — gathering 02
+# The Reed Sieve — gathering 03
 
-Checked the four lines, kept their files unchanged, and left the reusable
-[Payment evidence bridge](../shared/payment-evidence/README.md). It joins bounded
-RPC capture, JSON contracts, settlement/net ZTO or IMD payment checks and offline
-typed-data commitments. [REPORT.md](REPORT.md) records every trial, two line 3
-transport defects and limitations. [COINS.md](COINS.md) explains the decision: none.
+Checked every line's current tools, preserved all line files, and connected the
+new EIP-712 encoding trace to the reusable payment-evidence bridge. The addition
+replays a real ZTO/IMD payment against a separate policy, explains its commitment
+field by field, and compares an exact client typed-data request by JSON Pointer.
+[REPORT.md](REPORT.md) records all trials and limitations; [COINS.md](COINS.md)
+says none because the existing tokens and offline tools suffice.
 
-One working standard-library command from the repository root:
+One working command from the repository root, Python standard library only:
 
 ```sh
-python3 -B shared/payment-evidence/check.py shared/payment-evidence/example.transcript.json shared/payment-evidence/example.policy.json
+python3 -B shared/payment-evidence/explain.py shared/payment-evidence/example.transcript.json shared/payment-evidence/example.policy.json --compare shared/payment-evidence/example.typed-data.json --summary
 ```
 
-Reproduce all documented offline checks (101 tests plus demonstrations):
+Tried: exit 0, accepted historical ZTO payment, twelve nodes, matching commitment
+and no differences. Remove `--summary` to see every word/preimage/offset. These
+examples are observed payments, not independently chosen invoices or permits.
+A matching commitment is not signing authorization or provider authentication.
+
+Reproduce every documented offline check:
 
 ```sh
 python3 -B gathering/run_checks.py
 ```
 
-Build the self-contained gallery with `python3 -B gathering/build_gallery.py`;
-check delivery formats, metadata, slots, source hashes and gallery ordering with
-`python3 -B gathering/check_delivery.py`. No dependency install is required.
+All 146 tests and offline demonstrations passed. Live finalized ZTO supply and
+known-hash payment checks passed; newest-transfer discovery returned the actual
+`HTTP Error 400: Bad Request` and is recorded as unresolved. No wallet, key,
+configuration, signing, payment, deployment or external submission was used.
 
-The final wall is `artifacts/gathering/wall-v2.png`, identical to `wall.png`, RGB
-PNG, 1254 × 1254. Its record is `dist/gathering/02.json`; its decoded and inspected
-preview is `dist/gathering/02.jpg`, JPEG, 512 × 512, 75,065 bytes. No known unmet
-visual requirements; [wall-review-02.json](wall-review-02.json) records the review.
+Build the gallery with `python3 -B gathering/build_gallery.py`; validate delivery
+with `python3 -B gathering/check_delivery.py`. Both need no installed dependency.
+The gallery has 113 records, fifteen paintings and 98 retained future slots.
 
-Used the built-in imagegen tool to add four worn ochre pebbles linked by charcoal
-inside an ochre oval beside the ancestor bowl. Prompt: preserve every ancestor
-mark and the square cave rock, cracks, colors, torchlight, water and framing; add
-only that small earth-pigment mark on unused lower-left stone; no hands, text,
-symbols, border or frame. Retained only the generated pigment on the verified
-ancestor; 1,556,305 pixels remain exact and the 16,211 changed pixels are confined
-to the addition. No hands or handprints are present. No words are painted.
+The new mark is four ochre strands passing through a reed sieve, representing
+inspection of every part of a payment commitment. The installed image tool
+produced the pigment; `finish_wall_03.py` documents one-time composition on the
+verified ancestor. All pixels outside the small addition and deep cracks remain
+identical. Do not rerun it on the finished wall.
 
-`image_bytes.py` encodes the delivery bytes with the standard library, including a
-baseline JPEG thumbnail. `finish_wall.py` documents the one-time composition step;
-it deliberately refuses to rerun with the already finished wall as its ancestor.
-Normal viewing/checking needs neither the image tool nor any image library.
+Wall: `artifacts/gathering/wall-v3.png` (also `wall.png`), RGB PNG, 1254 × 1254.
+Record: `dist/gathering/03.json`. Preview: `dist/gathering/03.jpg`, JPEG, 512 × 512,
+75198 bytes. The full PNG and decoded JPEG were inspected. Ancestor Pepe and
+all earlier marks are preserved. No hands/stencils, words or forbidden symbols
+observed; no known unmet visual requirements. [wall-review-03.json](wall-review-03.json)
+contains the review and preservation measurements. This is local visual review.

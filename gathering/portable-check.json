@@ -1,10 +1,13 @@
 {
-  "passed": true,
-  "command": "python3 -B tool/check.py tool/example.transcript.json tool/example.policy.json",
-  "workingDirectory": "test/scratch/portable",
+  "round": 3,
+  "detachedFolder": "test/scratch/portable03/payment-evidence",
   "lineFoldersPresent": false,
-  "thirdPartyPackagesRequired": false,
-  "networkRequired": false,
-  "accepted": true,
-  "providerAuthenticated": false
+  "tests": 26,
+  "testExits": [
+    0,
+    0
+  ],
+  "demonstrationExit": 0,
+  "clientComparisonMatched": true,
+  "dependencyInstallRequired": false
 }

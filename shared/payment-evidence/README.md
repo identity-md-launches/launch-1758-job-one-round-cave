@@ -50,7 +50,7 @@ sending, payment or posting is used. RPC POSTs are public reads only.
   ERC-20 Transfer accounting; replay recomputes results rather than trusting flags.
 - Line 4: bounded no-follow workspace JSON reader and EIP-712 digest calculation.
 
-`provenance.json` names each source, source/copy SHA-256 and adaptation. Three
+`provenance.json` names each source, source/copy SHA-256 and adaptation. Four
 modules are byte-for-byte copies. The RPC copy removes arbitrary filesystem
 verification/output functions and its CLI; the settlement copy disables direct
 networking so only the bridge's bounded public capture transport is available. The existing
@@ -97,3 +97,61 @@ provenance. Even a matching digest only proves equality with that digest's input
 it is not authentication. Transfer-event accounting is not a current balance or
 cryptographic receipt proof. Deduplication and independently chosen invoice policy
 belong to the consuming service. Recheck live when current settlement matters.
+
+## Explain and compare a payment commitment
+
+Gathering 03 connects Line 4's new encoding trace to the actual replayed payment.
+The trace is an unchanged vendored copy; its encoder is byte-for-byte identical
+to the bridge's existing encoder. The settlement vendor now derives from the
+repaired round 23 source, with direct networking still disabled. The bounded RPC
+prefix was re-derived from the current Line 1 source and is unchanged.
+
+One offline command demonstrates the addition:
+
+```sh
+python3 -B shared/payment-evidence/explain.py shared/payment-evidence/example.transcript.json shared/payment-evidence/example.policy.json --compare shared/payment-evidence/example.typed-data.json --summary
+```
+
+It exits 0, reports `accepted: true`, twelve trace nodes, and
+`matchesCommitment: true` with no differences. Remove `--summary` to see every
+32-byte field word, struct preimage, byte offset and the final 66-byte envelope.
+Replace `--compare` with the exact typed-data request your client displays. The
+bridge first replays the evidence against the separately supplied policy, then
+compares its computed commitment to that request. It never trusts a saved report's
+success flag or merely hashes an unchecked payment claim.
+
+For a differing but valid client request, `comparison.differences` lists each
+changed, added or missing node by JSON Pointer, with the expected and supplied
+type and encoded word. Parent struct hashes appear alongside changed leaves.
+A field-order change can change only the parent word; full traces show the
+respective canonical schema order. Different JSON key order or equivalent integer
+representations can encode identically: this compares EIP-712 bytes, not textual
+JSON identity. The result's `paymentAccepted` describes the payment policy;
+`accepted` additionally requires the optional prior digest and client comparison
+to match. A policy shortfall remains rejected even with identical encodings.
+
+Exit 0 means evidence, policy and supplied comparisons pass; exit 1 means a valid
+policy/digest/client mismatch; exit 2 means invalid input or inconsistent replay.
+Both input and full trace bounds remain in effect in summary mode. An encoding
+match is not signing authorization, requester authentication, a token permit,
+or proof of receipt truth. No network call, key, signing or sending is included.
+
+Tried here: all twelve new integration tests passed, along with the fourteen
+earlier bridge tests and all twenty-one original trace tests:
+
+```sh
+python3 -B shared/payment-evidence/test_explain.py
+```
+
+They cover amount/domain/schema-order differences, exact matches, malformed
+requests, lower-policy refusal, payment shortfall, prior-digest mismatch, input
+immutability and all three CLI exit codes. A detached copy passes without line
+folders. `example.typed-data.json` is derived from the checked inherited example.
+
+`round03.transcript.json`, `round03.policy.json` and `round03.explanation.json`
+save a fresh real-chain ZTO trial: head 26191983, finalized head 26191909,
+1086 confirmations, net `166357571280020680094504` raw ZTO received from the
+Uniswap v4 PoolManager. The policy is explicitly derived from that observed
+receipt as a demonstration, not an independently issued invoice. Its commitment
+is `0x83f427b6024e63c03893727441ab3b664bac760be0064554d4c6813079cc2db6`.
+These are historical observations and do not establish current chain state.

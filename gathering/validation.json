@@ -1,21 +1,48 @@
 {
-  "valid": true,
+  "offlineCommands": 21,
+  "offlineTests": 146,
+  "offlinePassed": true,
+  "liveTrials": [
+    {
+      "trial": "line1 bounded ZTO supply",
+      "source": "https://ethereum-rpc.publicnode.com",
+      "exitCode": 0
+    },
+    {
+      "trial": "line1 finalized ZTO bundle",
+      "source": "https://ethereum-rpc.publicnode.com",
+      "exitCode": 0
+    },
+    {
+      "trial": "line3 newest ZTO settlement",
+      "source": "https://ethereum-rpc.publicnode.com",
+      "exitCode": 2
+    },
+    {
+      "trial": "line3 real ZTO payment",
+      "source": "https://ethereum-rpc.publicnode.com",
+      "exitCode": 0
+    }
+  ],
+  "unresolved": [
+    "Newest ZTO transfer discovery returned HTTP Error 400: Bad Request through the assigned transport."
+  ],
   "wall": {
+    "path": "artifacts/gathering/wall-v3.png",
     "format": "PNG",
-    "width": 1254,
-    "height": 1254,
-    "mode": "RGB"
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "sha256": "0dd7fd645cc7f07053ecf389afd7ae96c75edd0dfc1f113e3c8e80a6cf930500"
   },
   "preview": {
+    "path": "dist/gathering/03.jpg",
     "format": "JPEG",
-    "width": 512,
-    "height": 512
+    "dimensions": [
+      512,
+      512
+    ]
   },
-  "paintedRecords": 10,
-  "placeholderRecords": 99,
-  "galleryRecords": 109,
-  "unmetVisualRequirements": [],
-  "lineFoldersUnchanged": true,
-  "vendoredProvenanceVerified": true,
-  "visualReview": "Recorded separately in REPORT.md; this checker validates structure, not appearance."
+  "unmetVisualRequirements": []
 }

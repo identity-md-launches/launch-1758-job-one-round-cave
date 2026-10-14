@@ -2,9 +2,9 @@
   {
     "source": "line-1/tools/bounded-rpc-snapshot/snapshot.py",
     "copy": "vendor/rpc_snapshot.py",
-    "sha256": "341ffcfb225cacb4f15770c1ecca095ed4962078652a965709492aeb5a371d66",
+    "sha256": "4b012b592a467fe6d5e19d8003347aa3aee6aa80e6d14b4ce6eaedb13fbe2dec",
     "copiedSha256": "2f8291af470d2a74c8118c2853e9c9e90935b143d792dd22c59da7d3d9bd7df9",
-    "adaptation": "Retain bounded RPC functions; remove arbitrary filesystem verification/output functions and CLI."
+    "adaptation": "Retain bounded RPC prefix unchanged; remove filesystem verification/output functions and CLI imports. Re-derived from current round 23 source; vendor bytes unchanged."
   },
   {
     "source": "line-2/tools/json-contract/check.py",
@@ -16,9 +16,9 @@
   {
     "source": "line-3/tools/settlement-check/settlement.py",
     "copy": "vendor/settlement-check/settlement.py",
-    "sha256": "7b43f899f0f393cf334a8218313861db9a76543ff6096c169d235fe71f2cd4df",
-    "copiedSha256": "b7c71f68f823e547100f8208c4420d5a8902a190f10829199a008f35e618509d",
-    "adaptation": "Disable the direct ancestor RPC transport; bridge capture supplies the bounded proxy-free line 1 transport."
+    "sha256": "347709c5f1dbd1b90a05535e4f8ef62be033749a676b14b43215d0517d5c6382",
+    "copiedSha256": "41c5b1deec55f6fddd0b95db72821f3c3b030b30525094be744f4137d312e1d1",
+    "adaptation": "Replace direct RPC transport with a refusing constructor; bridge capture supplies bounded public reads. Updated from repaired round 23 source."
   },
   {
     "source": "line-3/tools/payment-witness/witness.py",
@@ -32,6 +32,13 @@
     "copy": "vendor/typed_digest.py",
     "sha256": "a6903cd67fd837f18be3546721830228646df5e144c04f7a5cbd40c5f21854d9",
     "copiedSha256": "a6903cd67fd837f18be3546721830228646df5e144c04f7a5cbd40c5f21854d9",
+    "adaptation": "none; byte-for-byte source copy"
+  },
+  {
+    "source": "line-4/tools/typed-trace/typed_trace.py",
+    "copy": "vendor/typed_trace.py",
+    "sha256": "5c31aee1c6c845e2624448938a586016dd6304f768b1f793852919ec907ca78d",
+    "copiedSha256": "5c31aee1c6c845e2624448938a586016dd6304f768b1f793852919ec907ca78d",
     "adaptation": "none; byte-for-byte source copy"
   }
 ]

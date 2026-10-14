@@ -1,0 +1,49 @@
+{
+  "ancestorSha256": "d65cd7417ce4e2e732f24637ee0851f407d461a351ec48e52528ba29b9774432",
+  "ancestorSize": [
+    1254,
+    1254
+  ],
+  "wallSize": [
+    1254,
+    1254
+  ],
+  "wallFormat": "PNG",
+  "wallMode": "RGB",
+  "wallSha256": "0dd7fd645cc7f07053ecf389afd7ae96c75edd0dfc1f113e3c8e80a6cf930500",
+  "changedPixels": 9383,
+  "unchangedPixels": 1563133,
+  "changedPixelBounds": [
+    778,
+    796,
+    1029,
+    922
+  ],
+  "allPixelsOutsideAdditionUnchanged": true,
+  "additionRectangle": [
+    775,
+    795,
+    260,
+    130
+  ],
+  "deepCracksProtected": true,
+  "previewSize": [
+    512,
+    512
+  ],
+  "previewFormat": "JPEG",
+  "previewBytes": 75198,
+  "previewQuality": 52,
+  "imageTool": "installed mcp image generate_image",
+  "promptSummary": "Four ochre strands with charcoal beads pass through an oval reed sieve and emerge as four charcoal threads. Worn prehistoric earth pigment; no hands, people, text, logos or borders. Generated pigment alone is added on vacant ancestor stone.",
+  "reviewStatus": "visually inspected full PNG and decoded JPEG",
+  "unmetVisualRequirements": [],
+  "visualReview": {
+    "pepe": "Inherited wide mouth and big heavy-lidded eyes preserved exactly.",
+    "hands": "No hands, handprints or stencils are present; digit count is not applicable.",
+    "mark": "Four uneven pigment strands and charcoal beads pass through an ochre reed sieve on unused lower-right stone.",
+    "preservation": "All earlier marks, rock outside the addition, deep cracks, light, water and framing remain unchanged.",
+    "prohibitedElements": "No letters, numbers, captions, signatures, logos, watermark, border, frame, people, political or hateful symbols observed.",
+    "limitations": "Local visual review; no independent aesthetic certification."
+  }
+}

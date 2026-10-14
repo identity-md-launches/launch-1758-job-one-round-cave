@@ -6,6 +6,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.parse
 
 RPC_URL = "https://ethereum-rpc.publicnode.com"
 ZTO = "0xd782bdea4ef02a0bd391eb9089470c8080f0a68e"
@@ -28,18 +29,34 @@ def quantity(value):
     return int(value, 16)
 
 
+def strict_json(raw):
+    """Refuse ambiguous JSON at every nesting level, including nonfinite values."""
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise EvidenceError("duplicate JSON key: " + key)
+            result[key] = value
+        return result
+
+    def constant(value):
+        raise EvidenceError("nonfinite JSON value: " + value)
+
+    try:
+        return json.loads(raw, object_pairs_hook=pairs, parse_constant=constant)
+    except (ValueError, UnicodeError, RecursionError) as exc:
+        raise EvidenceError("invalid RPC JSON: " + str(exc)) from exc
+
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise EvidenceError("RPC redirects are refused")
+
+
 class RPC:
-    """Direct network transport is disabled in this shared offline copy.
-
-    The bridge's capture.py supplies line 1's bounded, proxy-free public reads.
-    This prevents accidental use of the ancestor's environment-discovered proxy
-    transport, permissive response IDs and duplicate-key parsing.
-    """
+    """Direct networking is disabled; use the bridge's bounded public reads."""
     def __init__(self, url):
-        raise EvidenceError("use shared/payment-evidence/capture.py for bounded public reads")
-
-    def call(self, method, params):
-        raise EvidenceError("direct network access is disabled in the offline settlement copy")
+        raise EvidenceError("use the bridge's bounded public reads adapter")
 
 
 def block(rpc, tag):

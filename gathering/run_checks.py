@@ -19,19 +19,27 @@ def main():
     # copy in scratch so even temporary line-folder modifications are avoided.
     shutil.copytree(ROOT / 'line-4/tools/typed-digest', scratch / 'typed-digest', dirs_exist_ok=True)
     commands = [
+        ['line-1/tools/rpc_snapshot.py', '--verify', 'line-1/tools/bounded-rpc-snapshot/sample-zto-supply.json'],
         ['line-1/tools/bounded-rpc-snapshot/snapshot.py', '--verify', 'line-1/tools/bounded-rpc-snapshot/sample-zto-supply.json'],
+        ['line-1/tools/anchored-zto-snapshot/anchored.py', '--verify', 'line-1/tools/anchored-zto-snapshot/sample.json'],
         ['line-2/tools/json-contract/check.py', 'line-2/tools/json-contract/report.contract.json', 'line-2/tools/json-contract/report.example.json'],
         ['line-2/tools/json-contract/test_check.py'],
         ['line-2/tools/ordered-deliverables/check.py', 'line-2/tools/ordered-deliverables/handoff.contract.json', 'line-2/tools/ordered-deliverables/handoff.example.json'],
         ['line-2/tools/ordered-deliverables/test_ordered.py'],
+        ['line-2/tools/batch-contract/check.py', 'line-2/tools/ordered-deliverables/record.strict.contract.json', 'dist/line-2/01.json', 'dist/line-2/22.json', 'dist/line-2/23.json'],
         ['-m', 'unittest', 'discover', '-s', 'line-3/tools/settlement-check', '-p', 'test_*.py', '-v'],
         ['line-3/tools/payment-witness/witness.py', '--replay', 'line-3/tools/payment-witness/live-evidence.json'],
         ['-m', 'unittest', 'discover', '-s', 'line-3/tools/payment-witness', '-p', 'test_*.py', '-v'],
+        ['line-3/tools/rpc-boundary/check.py'],
         ['line-4/tools/typed-digest/typed_digest.py', 'line-4/tools/typed-digest/zto-example.json', '--expect', '0xc292388738e2cf2c7f57b9b8926821aff508ed38c1b355020cc7dc459dbbb8cb'],
         ['-m', 'unittest', 'discover', '-s', 'test/scratch/typed-digest', '-p', 'test_*.py', '-v'],
+        ['line-4/tools/typed-trace/typed_trace.py', 'line-4/tools/typed-trace/zto-payment.json', '--expect', '0xf33e2506e5c103f98dbfe3feb6d4b87d55f1fad4e423dbaa8462465ff4ab9774', '--summary'],
+        ['-m', 'unittest', 'discover', '-s', 'line-4/tools/typed-trace', '-p', 'test_*.py', '-v'],
         ['shared/rpc-evidence/test_bridge.py'],
         ['shared/rpc-evidence/verify.py', 'shared/rpc-evidence/chain-id.snapshot.json'],
-        ['shared/payment-evidence/test_evidence.py']]
+        ['shared/payment-evidence/test_evidence.py'],
+        ['shared/payment-evidence/explain.py', 'shared/payment-evidence/example.transcript.json', 'shared/payment-evidence/example.policy.json', '--summary'],
+        ['shared/payment-evidence/test_explain.py']]
     results = []
     for args in commands:
         command = [sys.executable, '-B', *args]

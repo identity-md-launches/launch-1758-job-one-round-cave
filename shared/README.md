@@ -12,3 +12,9 @@ verification, and offline typed-data commitments. It binds replay to an independ
 supplied policy and includes real historical and fresh mainnet observations,
 vendored standard-library code and 14 integration tests. Copy its folder to use it
 without the cave or line folders.
+
+Gathering 03 adds [payment commitment explanation](payment-evidence/explain.py):
+replay the checked payment, inspect its EIP-712 field words and compare an exact
+client request, locating mismatches by JSON Pointer. The trace is vendored from
+Line 4 and connects to the existing four-line bridge. Twelve integration tests
+and a fresh real ZTO payment exercise it entirely offline after capture.
