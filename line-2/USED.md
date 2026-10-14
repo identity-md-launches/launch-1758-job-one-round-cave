@@ -23,3 +23,18 @@
   in a local validation command, without running its gallery checks or modifying it.
 - Used Python standard-library tests and comparisons; no packages, configuration edits,
   wallet actions, keys, environment reads or transactions. No coin is required by this piece.
+
+# Used for Many Stones (record 23)
+
+- Kept the line goal and all earlier records unchanged. Read the gathering
+  report: it identified no broken line 2 behavior needing repair.
+- Reused the existing `json-contract` engine and the strict ordered record
+  contract for a new batch checker. Tried it on actual line 2 records and
+  scratch inputs covering pass, violations, malformed JSON and path refusal.
+- Restored the latest painted wall from record 22's public artifact with a
+  specific User-Agent and verified its SHA-256 before painting.
+- Used installed image generation for a new small upper-left Pepe and three
+  pebbles, then ffmpeg for a bounded feathered composite and preview JPEG.
+  Existing marks outside that region remain intact.
+- Used only public image data, local files and standard-library tool code.
+  No coin is needed for the offline checker.

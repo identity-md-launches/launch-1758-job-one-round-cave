@@ -1,0 +1,37 @@
+{
+  "wall": {
+    "paths": [
+      "artifacts/line-2/wall.png",
+      "artifacts/line-2/wall-v3.png"
+    ],
+    "format": "PNG",
+    "width": 1254,
+    "height": 1254,
+    "color": "RGB",
+    "sha256": "99ec2af1433b29ad0dbf0558e1d40e63fd3c38399d4a57c103ada7ce31dd26e8"
+  },
+  "preview": {
+    "path": "dist/line-2/23.jpg",
+    "format": "JPEG",
+    "width": 512,
+    "height": 512,
+    "bytes": 33836
+  },
+  "comparison": {
+    "ancestor_record": 22,
+    "changed_pixels": 43729,
+    "changed_pixels_outside_new_mark_rectangle": 0,
+    "new_mark_rectangle_xyxy": [210, 165, 505, 320]
+  },
+  "tool_checks": {
+    "actual_records_checked": 3,
+    "actual_records_passed": 3,
+    "inherited_engine_tests_passed": 10,
+    "ordered_checker_tests_passed": 13,
+    "scratch_cases": ["valid", "violations", "malformed JSON", "path refusal", "exit precedence"]
+  },
+  "visual_review": {
+    "method": "local manual inspection of wall and preview",
+    "unmet_requirements": []
+  }
+}
